@@ -12,13 +12,16 @@ class DirectViewer
             $this->directory = $directory;
             $this->getFilesFromDirectory();
         } else {
-            throw new Exception('Не найдена директория '.$directory);
+            throw new Exception('Не найдена директория ' . $directory);
         }
     }
 
 
+    public function getFilesFromDirectory()
+    {
 
-    public function getFilesFromDirectory() {
+        $this->filelist = [];
+
         if ($handle = opendir($this->directory)) {
 
             while (false !== ($entry = readdir($handle))) {
@@ -33,29 +36,25 @@ class DirectViewer
         }
     }
 
-    public function getFileList() {
+    public function getFileList()
+    {
         return $this->filelist;
     }
 
-    private function filterFilesByRules() {
-
-        $temp = [];
-
+    private function filterFilesByRules()
+    {
         foreach ($this->filelist as $key => $title) {
-            foreach ($this->filerules as $rule) {
-                if (strpos($key, $rule) != 0) {
-                    $temp[$key] = $title;
-                    break;
-                };
+            $extention = strtolower(substr($key, (strpos($key, '.') + 1)));
+            if (!in_array($extention, $this->filerules)) {
+                unset($this->filelist[$key]);
             };
         };
-
-        natcasesort($temp);
-        $this->filelist = $temp;
+        natcasesort($this->filelist);
     }
 
-    private function createTitle($value) {
-        $title = substr($value,0,strrpos($value,'.'));
+    private function createTitle($value)
+    {
+        $title = substr($value, 0, strrpos($value, '.'));
         return $title;
     }
 
