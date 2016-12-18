@@ -58,4 +58,15 @@ class DirectViewer
         return $title;
     }
 
+    public function getFileArraySlice($start, $numberitems) {
+        return array_slice($this->filelist, $start, $numberitems);
+    }
+
+    public function getDirectoryName() {
+        return $this->directory;
+    }
+
+    public function getCount() {
+        return count($this->filelist);
+    }
 }
