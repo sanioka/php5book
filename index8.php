@@ -30,13 +30,24 @@ foreach ($filearray as $key => $value) {
     echo "Заголовок: $value</a> <br />\n";
 }
 echo "</div><br />";
+?>
 
+
+<?php
+/**
+ * Блок пагинации
+ */
 $pagename = basename($_SERVER['PHP_SELF']);
 $totalCount = $di->getCount();
 $numpages = ceil($totalCount / PERPAGE);
 
-if ($numpages > 1) {
-    $nav = new PageNavigator($pagename, $totalCount, PERPAGE, $totalOffset);
-    $nav->setFirstParamName(OFFSET);
-    echo $nav->getNavigator();
-}
+if ($numpages > 1) :
+    ?>
+    <div style="text-align: center; padding-top: 20px;">
+        <?php
+        $nav = new PageNavigator($pagename, $totalCount, PERPAGE, $totalOffset);
+        $nav->setFirstParamName(OFFSET);
+        echo $nav->getNavigator();
+        ?>
+    </div>
+<?php endif; ?>
