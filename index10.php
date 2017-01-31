@@ -37,7 +37,7 @@ $rs = $con->createResultSet($strSQL, 'php5book');
 
 <div style="text-align: center">
     <?php
-    while ($row = $rs->getRow()) {
+    foreach ($rs as $row) {
         echo $row[0] . ' - ' . $row[1];
         echo "<br />\n";
     }

@@ -1,6 +1,7 @@
 <?php
 ////////////////////////////////////////////////////////////////////
-class MySQLResultSet{
+class MySQLResultSet implements Iterator
+{
 	//data members
 	private $strSQL;
 	private $databasename;
@@ -157,5 +158,43 @@ class MySQLResultSet{
     }
     return $number;
   }
+
+  /**
+   * урок 10 — итераторы
+   */
+  private $currentrow;
+  private $key;
+  private $valid;
+  public function current() {
+  	return $this->currentrow;
+  }
+  public function key() {
+  	return $this->key;
+  }
+  public function valid() {
+  	return $this->valid;
+  }
+
+  public function next() {
+  	if ($this->currentrow = mysql_fetch_array($this->result)) {
+  		$this->valid = true;
+		$this->key++;
+	} else {
+		$this->valid = false;
+	}
+  }
+
+  public function rewind() {
+  	if ($num = mysql_num_rows($this->result) > 0) {
+  		if (mysql_data_seek($this->result, 0)) {
+  			$this->valid = true;
+			$this->key = 0;
+			$this->currentrow = mysql_fetch_array($this->result);
+		}
+	} else {
+		$this->valid = false;
+	}
+  }
+
+
 }//end class
-?>

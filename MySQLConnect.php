@@ -1,21 +1,24 @@
 <?php
 require "MySQLResultSet.php";
+require "MySQLException.php";
 
 class MySQLConnect
 {
     private $connection;
     static $instances = 0;
+    const ONLY_ONE_INSTANCE_ALLOWED = 5000;
 
     public function __construct($hostname, $username, $password)
     {
         if (self::$instances == 0) {
-            $this->connection = mysql_connect($hostname, $username, $password) or
-            die(mysql_error() . 'Ошибка #' . mysql_errno());
+            if (!$this->connection = mysql_connect($hostname, $username, $password)) {
+                throw new MySQlException(mysql_error(), mysql_errno());
+            }
             self::$instances = 1;
         } else {
-            die('Закройте предыдущее соединение');
+            $msg = 'Закройте существующий экземпляр класса MySQLConnect.';
+            throw new MySQlException($msg, self::ONLY_ONE_INSTANCE_ALLOWED);
         }
-
     }
 
     public function __destruct()
