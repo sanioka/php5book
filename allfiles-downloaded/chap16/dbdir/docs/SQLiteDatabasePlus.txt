@@ -1,0 +1,67 @@
+
+      Name: SQLiteDatabasePlus
+
+      Date: Oct-27-2005
+      PHP version: 5.1.0RC1
+      Type: User-defined
+
+      class SQLiteDatabasePlus extends SQLiteDatabase 
+
+      /** Extend SQLiteDatabase and throw exceptions when creating result sets
+      - also add utility functions */
+
+      Public Methods
+
+      public query ( $strsql, $type = 3 ) user-defined
+      /** Override function */
+
+      public unbufferedQuery ( $strsql, $type = 3 ) user-defined
+      /** Override function */
+
+      public singleQuery ( $strsql, $first_row = 1, $bin_decode = "" )
+      user-defined
+      /** Override function */
+
+      public cleanData ( $post, $tablename ) user-defined
+      /** Return clean posted data - check variable names same as field names
+      */
+
+      public matchNames ( $post, $tablename ) user-defined
+      /** Ensure posted form names match table field names */
+
+      public getTableNames ( ) user-defined
+      /** Get all table names in database */
+
+      public getFields ( $tablename ) user-defined
+      /** Retrieve field names/types for specified table */
+
+      final public __construct ( )
+
+      public queryExec ( )
+
+      public arrayQuery ( )
+
+      public lastInsertRowid ( )
+
+      public changes ( )
+
+      public createAggregate ( )
+
+      public createFunction ( )
+
+      public busyTimeout ( )
+
+      public lastError ( )
+
+      public fetchColumnTypes ( )
+
+      Private Methods
+
+      private setTableNames ( ) user-defined
+      /** private method - initializes table names array */
+
+      Private Data Members
+
+      private tablenames
+
+

@@ -1,0 +1,20 @@
+note on version number of command line tool
+note on function not supported in PDO version of 
+pdo doesn't recognize format of 3.3.5
+
+incompatibilities with earlier versions
+
+
+can download older versions
+in the following fashion
+http://www.sqlite.org/sqlite-3_2_8.zip
+
+mac has
+sqlite: 2.8.17
+PDO Driver: sqlite2, sqlite
+PDO_SQLite: 1.0.1
+PDO LIbrary: 3.2.8Undefined
+
+from php.net
+
+As a result, the SQLite 2 driver is not as feature-rich as the SQLite 3 driver

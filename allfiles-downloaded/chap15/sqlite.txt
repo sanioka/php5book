@@ -1,0 +1,146 @@
+confirm that your sqlite db is there by 
+
+sqlite resources.sqlite (or sqlite3 if using version 3)
+then select * from tblresources;
+
+If no results not installed properly
+
+make sure error reporting set to all and display to one
+
+final in versions prior to 5.05
+
+Fixed bug #32933 (Cannot extend class "SQLiteDatabase"). (Marcus)
+PeterMac says:
+ready to talk  ?
+Peter says:
+sure
+PeterMac says:
+ok... so I am getting the little side menu working but nothing else... I suspect I don't have SQLite set up correctly, well the database file at least
+Peter says:
+what version of PHP do you have installed?
+PeterMac says:
+good ?
+PeterMac says:
+5.0.4
+PeterMac says:
+SQLite is showing as active on my phpinfo() report
+Peter says:
+Ok . So you're running sqlite version 2.whatever. What OS and web seerver?
+PeterMac says:
+XP and Apache
+PeterMac says:
+on FireFox
+Peter says:
+You have the dll set up in php.ini?
+PeterMac says:
+for SQLite ?
+PeterMac says:
+it is built in to PHP 5.x is it not ?
+Peter says:
+It is. Can you do a phpinfo to make sure it is there?
+PeterMac says:
+it is there... 
+PeterMac says:
+2.8.14
+Peter says:
+OK. Why don't you download the command line tool from the sqlite site and have a look from the command line. I don't think I included the database with the downloads. Did I?
+PeterMac says:
+I have the command line tool and the dump.sql files here
+Peter says:
+I just checked the downloads. I didn't include the database. I can send it to you. But still it's a concern if the chapter doesn't give enough information on installing sqlite.
+Peter says:
+can you install the dump?
+PeterMac says:
+you provided the dump.sql file and said to type this in the command line
+
+sqlite resources.sqlite < dump.sql
+Peter says:
+yes
+PeterMac says:
+is there a way to see if that was successful
+PeterMac says:
+in the command line tool I mean
+Peter says:
+drom the command line try to use the database.
+PeterMac says:
+how?  what is the command, please... I know nothing of SQLite really
+Peter says:
+It's been a while ... sqlite resources.sqlite ...  I think.
+Peter says:
+then a - select * from tblresources;
+PeterMac says:
+I seem to have data there... so far so good... you may want to add that to the chapter to help the reader verify that they did this step correctly
+PeterMac says:
+what next then /
+PeterMac says:
+/ = ?
+Peter says:
+If that db is in the right directory then .. I'm missing an index.php file from the downloads. I'll add that page. try to open the getresources page under the dbdir directory.
+PeterMac says:
+the page opens but I only get Add Link, and View resources on the left hand side, should I be seeing more ?
+Peter says:
+yes - all the links in the tblresources. What level error reporting do you have in your php.ini?
+PeterMac says:
+probably none... hang on... 
+PeterMac says:
+E_ALL , but had display off ... re-trying that now... 
+PeterMac says:
+got the error now... 
+PeterMac says:
+Fatal Error: Class SQLiteDatabasePlus may not inherit from final class (SQLiteDatabase) in... on line 153
+Peter says:
+whooa
+Peter says:
+Can you open chapter 14 and click on the link to the sqlite database class in the left sidebar? sqlite classes are not final in php 5.1.
+PeterMac says:
+my ZIP for code for ch14 only has 2 files in it... I cleaned out the folders... what does 14 depend on ?
+PeterMac says:
+that is something else you might consider, having the complete solution to each chapter in its own folder... so that one doesn't depend on a previous chapter... 
+PeterMac says:
+brb
+Peter says:
+it requires the Documenter class.  There is no dependancy.
+Peter says:
+I just want to see how the sqlite classes are declared under PHP 5.04. 
+Peter says:
+Using the files from chapter 14 and we can introspect the sqlite classes under version 5.04. I don't have anything earlier than 5.05 installed  here.
+Peter says:
+I just found a reference to the problem in the changelog for version 5.05 - this is a bug in earlier versions of PHP.
+PeterMac says:
+I have it up here now... 
+PeterMac says:
+it says final class SQLiteDatabase
+PeterMac says:
+ok, so you want me to upgrade ?
+Peter says:
+Thanks - I'll have to mention that you need 5.05 or higher to do this chapter. 
+Peter says:
+Yes pls upgrade - 5.05 should be ok if you don't want to go to 5.1.2 - the pdo chapter might actually be easier using 5.05.
+PeterMac says:
+which do you prefer me to do ?
+Peter says:
+I did the pdo chapter (16) under 5.05 on linux. if you could do it on windows in 5.1.2 it would be good. Then we might spot any potential problems.
+PeterMac says:
+5.1.2 it is... I have finished reading through 15 and have only 10 pages left on 16... so I am almost done... I should have this all to you by the end of the day... 
+Peter says:
+Great - I think your questions/comments have made for a much more readable book - it's easy to have blind spots about things. You know I didn't mention the word function as a keyword at all - didn't even think about it until I saw your comment.
+PeterMac says:
+what chapter was that in ?  (I have poor short term memory) 
+Peter says:
+I think 5 but they're all a jumble at the moment since I'm trying to do an index and a final proof and your tech review at the same time. Looks like the book should be out next month.
+PeterMac says:
+great... 
+Peter says:
+need me for anything else? I'll be around until about 3 if you have any problems with this under 5.1.2.
+PeterMac says:
+well glad I could help on this project... stay connected here on MSN if you don't mind... I will ping you if I have troubles... 
+PeterMac says:
+Kirk out (for now)... 
+PeterMac says:
+just mark yourself as busy and people will leave you alone (generally)
+Peter says:
+ok - talk to you later.
+
+http://www.php.net/ChangeLog-5.php#5.0.5
+
+mention meessages that indicate wrong version i.e. encrypted or complaints about the format view phpinfo then download the command line version 

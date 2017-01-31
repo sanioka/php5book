@@ -1,0 +1,6 @@
+Options +FollowSymLinks
+RewriteEngine on
+#RewriteBase /
+RewriteRule ^php_class_(.*)\.htm$ getclass\.php?class=$1
+RewriteRule ^web_articles_(.*)\.htm$ articles\.php?offset=$1
+
