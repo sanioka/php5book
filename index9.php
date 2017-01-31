@@ -4,14 +4,8 @@ require "PageNavigator.php";
 
 define('PERPAGE', 3);
 define('OFFSET', 'offset');
-$offset = $_GET[OFFSET];
 
-if (!isset($offset)) {
-    $recordoffset = 0;
-} else {
-    $recordoffset = $offset * PERPAGE;
-}
-
+$recordoffset = isset($_GET[OFFSET]) ? $_GET[OFFSET] * PERPAGE : 0 ;
 $category = isset($_GET['category']) ? $_GET['category'] : 'LIT';
 
 $strSQL = 'SELECT author, title ' .
