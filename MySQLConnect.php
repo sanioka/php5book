@@ -7,17 +7,23 @@ class MySQLConnect
     private $connection;
     static $instances = 0;
     const ONLY_ONE_INSTANCE_ALLOWED = 5000;
+    private static $instance = NULL;
 
-    public function __construct($hostname, $username, $password)
+    public static function getInstance($hostname, $username, $password)
     {
-        if (self::$instances == 0) {
-            if (!$this->connection = mysql_connect($hostname, $username, $password)) {
-                throw new MySQlException(mysql_error(), mysql_errno());
-            }
-            self::$instances = 1;
+        if (self::$instance == NULL) {
+            self::$instance = new MySQLConnect($hostname, $username, $password);
+            return self::$instance;
         } else {
             $msg = 'Закройте существующий экземпляр класса MySQLConnect.';
             throw new MySQlException($msg, self::ONLY_ONE_INSTANCE_ALLOWED);
+        }
+    }
+
+    private function __construct($hostname, $username, $password)
+    {
+        if (!$this->connection = mysql_connect($hostname, $username, $password)) {
+            throw new MySQlException(mysql_error(), mysql_errno());
         }
     }
 
@@ -35,7 +41,8 @@ class MySQLConnect
         }
     }
 
-    public function createResultSet($strSQL, $databasename) {
+    public function createResultSet($strSQL, $databasename)
+    {
         $rs = new MySQLResultSet($strSQL, $databasename, $this->connection);
         return $rs;
     }

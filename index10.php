@@ -13,7 +13,7 @@ $strSQL = 'SELECT author, title ' .
             "WHERE sold = 0 AND cat = '$category' " .
             "ORDER BY author LIMIT $recordoffset," . PERPAGE;
 
-$con = new MySQLConnect('localhost', 'root', '');
+$con = MySQLConnect::getInstance('localhost', 'root', '');
 $rs = $con->createResultSet($strSQL, 'php5book');
 
 
